@@ -23,7 +23,7 @@ jobs:
             name: github-pages
         steps:
             - uses: actions/deploy-pages@v4
-            - name: Publier sur GitHub Pages
-              uses: actions/upload-pages-artifact@v3
-              with:
-                path: .
+#            - name: Publier sur GitHub Pages
+#              uses: actions/upload-pages-artifact@v3
+#              with:
+#                path: .
