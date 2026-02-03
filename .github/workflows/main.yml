@@ -8,8 +8,8 @@ jobs:
   test-runner:
     runs-on:
       - self-hosted
-      - linux
-      - x64
+      - Linux
+      - X64
     steps:
       - name: Verification
         run: echo "Test de fonctionnement du Runner !"
