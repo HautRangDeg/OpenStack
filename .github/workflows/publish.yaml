@@ -12,10 +12,7 @@ jobs:
             - name: Vérifier l’intention
               run: |
                 grep "Site Version 1" index.html
-            - name: Publier sur GitHub Pages
-              uses: actions/upload-pages-artifact@v3
-              with:
-                path: .
+            
     publish:
         needs: deploy
         runs-on: ubuntu-latest
@@ -26,3 +23,7 @@ jobs:
             name: github-pages
         steps:
             - uses: actions/deploy-pages@v4
+            - name: Publier sur GitHub Pages
+              uses: actions/upload-pages-artifact@v3
+              with:
+                path: .
