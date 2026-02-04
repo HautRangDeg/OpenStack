@@ -11,9 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Installer yq
-        run: sudo apt-get install -y yq
-
       - name: Générer index.html depuis intent.yaml
         run: |
           VERSION=$(yq '.site.version' intent.yaml)
