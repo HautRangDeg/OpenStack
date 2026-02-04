@@ -12,6 +12,8 @@ jobs:
             - name: Vérifier l’intention
               run: |
                 grep "Site Version 1" index.html
+                grep "Demo GitOps" index.html
+                grep "Déployé via GitOps" index.html
             - name: Publier sur GitHub Pages
               uses: actions/upload-pages-artifact@v3
               with:
