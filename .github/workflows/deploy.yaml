@@ -20,7 +20,11 @@ jobs:
           HEADER=$(yq '.site.header' intent.yaml)
 
           cat <<EOF > index.html
+          <!DOCTYPE html>
           <html>
+          <head>
+          <title>Demo GitOps</title>
+          </head>
           <body>
           <h1>$HEADER</h1>
           <p>Version $VERSION</p>
