@@ -1,0 +1,5 @@
+site:
+  version: "Site Version 1"
+  title: "Demo GitOps"
+  deployment: "Déployé via GitOps"
+  public: true

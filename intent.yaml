@@ -1,5 +1,4 @@
 site:
-  version: "Site Version 1"
-  title: "Demo GitOps"
-  deployment: "Déployé via GitOps"
-  public: true
+  title: "Évaluation GitOps-IBN"
+  version: 1
+  header: "Site Version 1"
