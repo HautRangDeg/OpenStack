@@ -1,23 +1,42 @@
 name: GitOps Pages
+
 on:
- push:
+  push:
     branches: [main]
 
 jobs:
-    reconcile:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4
-           
-            - name: Générer index.html depuis l’intention
-              run: |
-                VERSION=$(yq '.site.version' intent.yaml)
-                HEADER=$(yq '.site.header' intent.yaml)
-                cat <<EOF > index.html
-                <html>
-                <body>
-                    <h1>$HEADER</h1>
-                    <p>Version $VERSION</p>
-                </body>
-                </html>
-                EOF
+  reconcile:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Installer yq
+        run: sudo apt-get install -y yq
+
+      - name: Générer index.html depuis intent.yaml
+        run: |
+          VERSION=$(yq '.site.version' intent.yaml)
+          HEADER=$(yq '.site.header' intent.yaml)
+
+          cat <<EOF > index.html
+          <html>
+          <body>
+          <h1>$HEADER</h1>
+          <p>Version $VERSION</p>
+          </body>
+          </html>
+          EOF
+
+      - name: Commit et push si changement
+        run: |
+          git config --global user.name HautRangDeg
+          git config --global user.email lochness2@gmx.fr
+
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "Aucun changement à committer"
+          else
+            git commit -m "Mise à jour automatique de index.html"
+            git push
+          fi
