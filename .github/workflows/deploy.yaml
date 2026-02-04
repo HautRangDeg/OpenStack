@@ -32,15 +32,18 @@ jobs:
           </html>
           EOF
 
-      - name: Commit et push si changement
-        run: |
-          git config --global user.name HautRangDeg
-          git config --global user.email lochness2@gmx.fr
+      - name: Publier sur GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+            path: .
 
-          git add index.html
-          if git diff --cached --quiet; then
-            echo "Aucun changement à committer"
-          else
-            git commit -m "Mise à jour automatique de index.html"
-            git push
-          fi
+  publish:
+        needs: reconcile
+        runs-on: ubuntu-latest
+        permissions:
+            pages: write
+            id-token: write
+        environment:
+            name: github-pages
+        steps:
+            - uses: actions/deploy-pages@v4       
